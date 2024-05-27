@@ -22,7 +22,7 @@ export function Lobby() {
 
     if (!blocks || !blocks.length) return <h1>Loading...</h1>
     return (
-        <section className="block-index">
+        <section className="block-index main-layout">
             <div className="list-title">
                 <h1>Choose code block</h1>
             </div>

@@ -1,5 +1,6 @@
 // SETUP
 @import 'setup/typography';
+@import 'setup/functions';
 @import 'setup/vars';
 @import 'setup/mixins';
 
@@ -13,6 +14,8 @@
 @import 'pages/code-block';
 
 // COMPONENTS
+@import 'components/block-list';
+@import 'components/block-preview';
 
 body{
     background-color: $main-bg-clr;

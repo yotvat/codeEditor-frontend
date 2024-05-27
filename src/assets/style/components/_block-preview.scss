@@ -1,0 +1,15 @@
+.block-preview{
+    width: em(220px);
+    height: em(140px);
+    background-color: rgb(49, 44, 44);
+    border-radius: $el-br;
+    cursor: pointer;
+
+    h2{
+        padding-block-start: em(10px);
+    }
+
+    h3{
+        margin-block-start: em(8px);
+    }
+}
