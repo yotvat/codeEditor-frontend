@@ -1,22 +1,36 @@
 import { useEffect, useRef, useState } from "react"
-import { useParams } from "react-router"
+import { useNavigate, useParams } from "react-router"
 import { blockService } from "../services/block.service"
 import { Editor } from "@monaco-editor/react"
-import { SOCKET_EMIT_SET_BLOCK, SOCKET_EMIT_UPDATE_BLOCK, SOCKET_EVENT_BLOCK_UPDATED, socketService } from "../services/socket.service"
+import { SOCKET_EMIT_SET_BLOCK, SOCKET_EMIT_UPDATE_BLOCK, SOCKET_EVENT_BLOCK_UPDATED, SOCKET_EVENT_IS_MENTOR, socketService } from "../services/socket.service"
 
 export function CodeEditor() {
     const editorRef = useRef()
     const [block, setBlock] = useState(null)
     const [value, setValue] = useState('')
-    // const [isMentor, setIsMentor] = useState(true)
+    const [isMentor, setIsMentor] = useState(true)
     const { blockId } = useParams()
+    const navigate = useNavigate()
 
     useEffect(() => {
         if (blockId) loadBlock(blockId)
-        socketService.emit(SOCKET_EMIT_SET_BLOCK, block)
-        socketService.on(SOCKET_EVENT_BLOCK_UPDATED, () => {loadBlock(blockId)})
+        socketService.on(SOCKET_EVENT_IS_MENTOR, ({ isMentor }) => {
+            setIsMentor(isMentor)
+            console.log(`Assigned role: ${isMentor ? 'Mentor' : 'Student'}`)
+        })
 
-        return () => socketService.off(SOCKET_EVENT_BLOCK_UPDATED)
+        //listen to update event and update the block
+        socketService.on(SOCKET_EVENT_BLOCK_UPDATED, (updatedBlock) => {
+            if (updatedBlock._id === blockId) {
+                setBlock(updatedBlock)
+                setValue(updatedBlock.code)
+            }
+        });
+
+        return () => {
+            socketService.off(SOCKET_EVENT_IS_MENTOR)
+            socketService.off(SOCKET_EVENT_BLOCK_UPDATED)
+        }
     }, [blockId])
 
     async function loadBlock(blockId) {
@@ -31,17 +45,13 @@ export function CodeEditor() {
     }
 
     function onMount(editor) {
-        //check first entrance
-        // if (!isMentor) {
         editorRef.current = editor
         editor.focus()
-        // } else return 
-
     }
 
     async function handleChange(currValue) {
         //check first entrance
-        // if (!isMentor) {
+        if (isMentor) return
         setValue(currValue)
         const blockToSave = { ...block, code: currValue }
         try {
@@ -51,13 +61,17 @@ export function CodeEditor() {
         } catch (err) {
             console.log(err);
         }
-        // } else return 
+
     }
 
-    // console.log(block);
+    console.log(isMentor);
     if (!block) return <h2>loading...</h2>
     return (
         <div className="code-editor">
+            <div className="editor-header">
+                {isMentor ? <span>Hello Tom!</span> : <span>Hello Josh!</span>}
+                <button onClick={() => navigate('/')}>Back</button>
+            </div>
             <Editor
                 height="70vh"
                 width="60%"
@@ -66,7 +80,11 @@ export function CodeEditor() {
                 defaultValue={block.code}
                 value={value}
                 onMount={onMount}
-                onChange={handleChange} />
+                onChange={handleChange}
+                options={{
+                    readOnly: isMentor
+                }}
+            />
         </div>
     )
 }
