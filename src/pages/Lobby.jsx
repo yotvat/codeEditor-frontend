@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { BlockList } from "../components/BlockList";
-import { blockService } from "../services/block.service.local";
+import { blockService } from "../services/block.service";
 
 export function Lobby() {
     const [blocks, setBlocks] = useState([])
