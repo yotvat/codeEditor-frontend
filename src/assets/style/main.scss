@@ -1,0 +1,22 @@
+// SETUP
+@import 'setup/typography';
+@import 'setup/vars';
+@import 'setup/mixins';
+
+// BASICS
+@import 'basics/base';
+@import 'basics/helpers';
+@import 'basics/layout';
+
+// PAGES
+
+// COMPONENTS
+
+body{
+    background-color: $main-bg-clr;
+}
+
+html{
+    color: white;
+    font-family: RobotoLight;
+}
