@@ -109,7 +109,7 @@ export function CodeEditor({ isMentor }) {
                         }}
                     />
                 </div>
-                <Output output={output} editorRef={editorRef} />
+                <Output solution={block.solution} output={output} editorRef={editorRef} />
             </div>
         </div>
     )

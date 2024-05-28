@@ -1,7 +1,6 @@
-export function Output({ output }) {
+export function Output({ output, solution }) {
 
-
-
+    const winner = solution.trim() === output?.trim()
     return (
         <section className="output-section">
             <div className="output-editor">
@@ -9,8 +8,12 @@ export function Output({ output }) {
                     {
                         output ? output : "Click run to see result"
                     }
+                    {winner && < pre >
+                        THAT'S CORRECT!!!!! 🤩 🤩
+                    </pre>}
+                    {!winner && output && <pre> TRY AGAIN... 😰 😰</pre>}
                 </span>
             </div>
-        </section>
+        </section >
     )
 }
