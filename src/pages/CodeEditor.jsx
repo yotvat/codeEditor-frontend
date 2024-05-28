@@ -6,12 +6,12 @@ import { SOCKET_EMIT_LEAVE_BLOCK, SOCKET_EMIT_SET_BLOCK, SOCKET_EMIT_UPDATE_BLOC
 import { Output } from "../components/Output"
 import { apiService } from "../services/res-api.service"
 
-export function CodeEditor({ isMentor }) {
+export function CodeEditor() {
     const editorRef = useRef()
     const [block, setBlock] = useState(null)
     const [value, setValue] = useState('')
     const [output, setOutput] = useState(null)
-    // const [isMentor, setIsMentor] = useState(false)
+    const [isMentor, setIsMentor] = useState(false)
     const { blockId } = useParams()
     const navigate = useNavigate()
 
@@ -20,7 +20,7 @@ export function CodeEditor({ isMentor }) {
 
         socketService.on(SOCKET_EVENT_IS_MENTOR, ({ isMentor }) => {
             console.log(isMentor)
-            // setIsMentor(isMentor)
+            setIsMentor(isMentor)
         })
 
         //Listen to update event and update the block
