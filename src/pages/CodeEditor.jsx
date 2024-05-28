@@ -4,20 +4,20 @@ import { blockService } from "../services/block.service"
 import { Editor } from "@monaco-editor/react"
 import { SOCKET_EMIT_SET_BLOCK, SOCKET_EMIT_UPDATE_BLOCK, SOCKET_EVENT_BLOCK_UPDATED, SOCKET_EVENT_IS_MENTOR, socketService } from "../services/socket.service"
 
-export function CodeEditor() {
+export function CodeEditor({isMentor}) {
     const editorRef = useRef()
     const [block, setBlock] = useState(null)
     const [value, setValue] = useState('')
-    const [isMentor, setIsMentor] = useState(false)
+    // const [isMentor, setIsMentor] = useState(false)
     const { blockId } = useParams()
     const navigate = useNavigate()
 
     useEffect(() => {
         if (blockId) loadBlock(blockId)
-        socketService.on(SOCKET_EVENT_IS_MENTOR, ({ isMentor }) => {
-            setIsMentor(isMentor)
+        // socketService.on(SOCKET_EVENT_IS_MENTOR, ({ isMentor }) => {
+        //     setIsMentor(isMentor)
 
-        })
+        // })
 
         //Listen to update event and update the block
         socketService.on(SOCKET_EVENT_BLOCK_UPDATED, (updatedBlock) => {
@@ -68,7 +68,7 @@ export function CodeEditor() {
     if (!block) return <h2>loading...</h2>
     return (
         <div className="code-editor">
-            <div className="editor-header">
+            <div className="editor-header flex align-center">
                 {isMentor ? <span>Hello Tom!</span> : <span>Hello Josh!</span>}
                 <button onClick={() => navigate('/')}>Back</button>
             </div>
