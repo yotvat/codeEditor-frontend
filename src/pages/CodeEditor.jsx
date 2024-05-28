@@ -4,11 +4,13 @@ import { blockService } from "../services/block.service"
 import { Editor } from "@monaco-editor/react"
 import { SOCKET_EMIT_LEAVE_BLOCK, SOCKET_EMIT_SET_BLOCK, SOCKET_EMIT_UPDATE_BLOCK, SOCKET_EVENT_BLOCK_UPDATED, SOCKET_EVENT_IS_MENTOR, socketService } from "../services/socket.service"
 import { Output } from "../components/Output"
+import { apiService } from "../services/res-api.service"
 
 export function CodeEditor({ isMentor }) {
     const editorRef = useRef()
     const [block, setBlock] = useState(null)
     const [value, setValue] = useState('')
+    const [output, setOutput] = useState(null)
     // const [isMentor, setIsMentor] = useState(false)
     const { blockId } = useParams()
     const navigate = useNavigate()
@@ -68,8 +70,16 @@ export function CodeEditor({ isMentor }) {
 
     }
 
-    async function runCode(){
+    async function runCode() {
+        const editorCode = editorRef.current.getValue()
+        if (!editorCode) return
 
+        try {
+            const { run: result } = await apiService.executeCode(editorCode)
+            setOutput(result.output)
+        } catch (err) {
+            console.log(err)
+        }
     }
 
     console.log('isMENTORRR:', isMentor);
@@ -99,7 +109,7 @@ export function CodeEditor({ isMentor }) {
                         }}
                     />
                 </div>
-                <Output editorRef={editorRef} />
+                <Output output={output} editorRef={editorRef} />
             </div>
         </div>
     )

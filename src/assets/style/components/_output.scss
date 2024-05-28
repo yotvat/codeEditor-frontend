@@ -23,9 +23,13 @@
         border: 1px solid $main-font-clr;
         border-radius: $el-br;
         background-color: $editor-dark-clr;
+
+        span{
+            font-size: em(12px);
+        }
     }
 
-    .output-editor .light {
+    .light {
         background-color: $editor-light-clr;
     }
 

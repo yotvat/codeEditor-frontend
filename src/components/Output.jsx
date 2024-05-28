@@ -1,12 +1,15 @@
-export function Output({editorRef}) {
+export function Output({ output }) {
 
 
 
     return (
         <section className="output-section">
-            {/* <button className="run-btn">Run Code</button> */}
             <div className="output-editor">
-                
+                <span>
+                    {
+                        output ? output : "Click run to see result"
+                    }
+                </span>
             </div>
         </section>
     )
