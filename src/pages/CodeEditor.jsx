@@ -8,7 +8,7 @@ export function CodeEditor() {
     const editorRef = useRef()
     const [block, setBlock] = useState(null)
     const [value, setValue] = useState('')
-    const [isMentor, setIsMentor] = useState(true)
+    const [isMentor, setIsMentor] = useState(false)
     const { blockId } = useParams()
     const navigate = useNavigate()
 
@@ -16,10 +16,10 @@ export function CodeEditor() {
         if (blockId) loadBlock(blockId)
         socketService.on(SOCKET_EVENT_IS_MENTOR, ({ isMentor }) => {
             setIsMentor(isMentor)
-            console.log(`Assigned role: ${isMentor ? 'Mentor' : 'Student'}`)
+
         })
 
-        //listen to update event and update the block
+        //Listen to update event and update the block
         socketService.on(SOCKET_EVENT_BLOCK_UPDATED, (updatedBlock) => {
             if (updatedBlock._id === blockId) {
                 setBlock(updatedBlock)
@@ -64,7 +64,7 @@ export function CodeEditor() {
 
     }
 
-    console.log(isMentor);
+    console.log('isMENTORRR:', isMentor);
     if (!block) return <h2>loading...</h2>
     return (
         <div className="code-editor">
