@@ -83,7 +83,7 @@ export function CodeEditor({ isMentor }) {
     }
 
     console.log('isMENTORRR:', isMentor);
-    if (!block) return <h2>loading...</h2>
+    if (!block) return <div className="loader"></div>
     return (
         <div className="code-editor flex column">
             <div className="editor-header flex align-center justify-around">

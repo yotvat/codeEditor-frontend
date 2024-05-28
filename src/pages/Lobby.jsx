@@ -20,7 +20,7 @@ export function Lobby() {
         }
     }
 
-    if (!blocks || !blocks.length) return <h1>Loading...</h1>
+    if (!blocks || !blocks.length) return <div className="loader"></div>
     return (
         <section className="block-index main-layout">
             <div className="list-title">
@@ -29,8 +29,6 @@ export function Lobby() {
             <BlockList
             blocks={blocks}
              />
-
-
         </section>
     )
 }

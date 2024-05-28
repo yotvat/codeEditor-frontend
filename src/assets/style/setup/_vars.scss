@@ -1,7 +1,7 @@
-$main-font-clr:rgb(224, 213, 213);
+$main-font-clr: rgb(224, 213, 213);
 $main-bg-clr: rgb(16, 23, 39);
 
-$btn-clr:rgb(86, 174, 86);
+$btn-clr: rgb(86, 174, 86);
 
 $clr-success: rgb(152, 232, 152);
 $clr-error: rgb(243, 150, 150);
@@ -12,15 +12,18 @@ $break-narrow: 870px;
 $break-normal: 1000px;
 
 //editor colors
-$editor-dark-clr:rgb(30 30 30);
-$editor-light-clr:rgb(255 255 254);
+$editor-dark-clr: rgb(30 30 30);
+$editor-light-clr: rgb(255 255 254);
 
 //card color
-$card-clr:rgb(42, 41, 41);
+$card-clr: rgb(42, 41, 41);
 
 //border-radius
 $el-br: 4px;
 
 //linear gradient
-$linear-g-color:-webkit-linear-gradient(rgb(103, 166, 208), rgb(93, 211, 84));
+$linear-g-color: -webkit-linear-gradient(rgb(103, 166, 208), rgb(93, 211, 84));
 
+//loader clrs
+$loader-blue-clr: #3498db;
+$loader-clr-gray: #f3f3f3;

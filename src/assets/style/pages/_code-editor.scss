@@ -16,23 +16,25 @@
             color: $main-font-clr;
             background-color: transparent;
             transition: .3s;
-            
+
             &:hover {
                 background-color: $main-font-clr;
                 color: $main-bg-clr;
-                
+
             }
         }
-        
+
         @include for-small-layout {
+            width: 80%;
             flex-direction: column-reverse;
             gap: 5px;
             margin-inline: 0;
-            span{
+
+            span {
                 font-size: em(12px);
             }
-            
-            button{
+
+            button {
                 font-size: em(12px);
                 padding: 2px;
 
