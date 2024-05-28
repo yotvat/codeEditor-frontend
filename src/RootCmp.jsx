@@ -22,6 +22,7 @@ export function App() {
         <main>
           <Routes>
           <Route element={<Lobby/>} path="/" />
+          {/* <Route element={<CodeEditor/>} path="/editor/:blockId" /> */}
           <Route element={<CodeEditor isMentor={isMentor}/>} path="/editor/:blockId" />
           </Routes>
         </main>

@@ -1,9 +1,17 @@
-.block-index{
+.block-index {
     margin-block-start: em(100px);
-}
+    
+    .list-title {
+        margin-block-end: em(10px);
+        font-size: em(25px);
+        text-align: center;
+        background: $linear-g-color;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        
+        @include for-narrow-layout {
+            font-size: em(15px);
 
-.list-title{
-    margin-block-end: em(10px);
-    font-size: em(25px);
-    text-align: center;
+        }
+    }
 }

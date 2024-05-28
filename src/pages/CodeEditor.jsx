@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react"
 import { useNavigate, useParams } from "react-router"
 import { blockService } from "../services/block.service"
 import { Editor } from "@monaco-editor/react"
-import { SOCKET_EMIT_SET_BLOCK, SOCKET_EMIT_UPDATE_BLOCK, SOCKET_EVENT_BLOCK_UPDATED, SOCKET_EVENT_IS_MENTOR, socketService } from "../services/socket.service"
+import { SOCKET_EMIT_LEAVE_BLOCK, SOCKET_EMIT_SET_BLOCK, SOCKET_EMIT_UPDATE_BLOCK, SOCKET_EVENT_BLOCK_UPDATED, SOCKET_EVENT_IS_MENTOR, socketService } from "../services/socket.service"
 
 export function CodeEditor({isMentor}) {
     const editorRef = useRef()
@@ -14,10 +14,11 @@ export function CodeEditor({isMentor}) {
 
     useEffect(() => {
         if (blockId) loadBlock(blockId)
-        // socketService.on(SOCKET_EVENT_IS_MENTOR, ({ isMentor }) => {
-        //     setIsMentor(isMentor)
 
-        // })
+        socketService.on(SOCKET_EVENT_IS_MENTOR, ({ isMentor }) => {
+            console.log(isMentor)
+            // setIsMentor(isMentor)
+        })
 
         //Listen to update event and update the block
         socketService.on(SOCKET_EVENT_BLOCK_UPDATED, (updatedBlock) => {
@@ -28,6 +29,8 @@ export function CodeEditor({isMentor}) {
         });
 
         return () => {
+
+            socketService.emit(SOCKET_EMIT_LEAVE_BLOCK, blockId)
             socketService.off(SOCKET_EVENT_IS_MENTOR)
             socketService.off(SOCKET_EVENT_BLOCK_UPDATED)
         }
@@ -69,7 +72,7 @@ export function CodeEditor({isMentor}) {
     return (
         <div className="code-editor">
             <div className="editor-header flex align-center">
-                {isMentor ? <span>Hello Tom!</span> : <span>Hello Josh!</span>}
+                {isMentor ? <span>Hello Tom! , Have a look at Josh's code</span> : <span>Hello Josh! try to solve "{block.title}" Code block!</span>}
                 <button onClick={() => navigate('/')}>Back</button>
             </div>
             <Editor

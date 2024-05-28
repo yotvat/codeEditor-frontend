@@ -1,15 +1,31 @@
-.block-preview{
+.block-preview {
     width: em(220px);
     height: em(140px);
-    background-color: rgb(49, 44, 44);
+    background-color: $card-clr;
     border-radius: $el-br;
+    transition: .2s;
+
+    &:hover {
+        scale: 1.05;
+    }
+
     cursor: pointer;
 
-    h2{
-        padding-block-start: em(10px);
+    h2 {
+        background: $linear-g-color;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
     }
 
-    h3{
-        margin-block-start: em(8px);
+    @include for-narrow-layout {
+        width: em(170px);
+        height: em(100px);
+
+        h2 {
+
+            font-size: em(16px);
+        }
     }
+
+
 }

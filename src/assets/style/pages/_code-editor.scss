@@ -1,0 +1,26 @@
+.code-editor {
+    margin-block-start: em(100px);
+    margin-inline-start: em(20px);
+
+
+    .editor-header {
+        margin-block-end: em(10px);
+        margin-inline-start: em(10px);
+
+        button{
+            margin-inline: em(10px);
+            padding: 4px;
+            border: 2px solid $btn-clr;
+            border-radius: $el-br;
+            color: $main-font-clr;
+            background-color: transparent;
+            transition: .3s;
+
+            &:hover{
+                background-color: $main-font-clr;
+                color: $main-bg-clr;
+
+            }
+        }
+    }
+}

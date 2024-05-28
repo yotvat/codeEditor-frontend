@@ -1,15 +1,22 @@
 $main-font-clr:rgb(224, 213, 213);
-$main-bg-clr: rgb(3, 20, 56);
+$main-bg-clr: rgb(16, 23, 39);
+
+$btn-clr:rgb(86, 174, 86);
 
 $clr-success: rgb(152, 232, 152);
 $clr-error: rgb(243, 150, 150);
 
 $break-mobile: 450px;
 $break-small: 600px;
-$break-narrow: 750px;
+$break-narrow: 870px;
 $break-normal: 1000px;
 
+//card color
+$card-clr:rgb(42, 41, 41);
 
 //border-radius
 $el-br: 4px;
+
+//linear gradient
+$linear-g-color:-webkit-linear-gradient(rgb(103, 166, 208), rgb(93, 211, 84));
 
