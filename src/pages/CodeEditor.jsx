@@ -3,8 +3,9 @@ import { useNavigate, useParams } from "react-router"
 import { blockService } from "../services/block.service"
 import { Editor } from "@monaco-editor/react"
 import { SOCKET_EMIT_LEAVE_BLOCK, SOCKET_EMIT_SET_BLOCK, SOCKET_EMIT_UPDATE_BLOCK, SOCKET_EVENT_BLOCK_UPDATED, SOCKET_EVENT_IS_MENTOR, socketService } from "../services/socket.service"
+import { Output } from "../components/Output"
 
-export function CodeEditor({isMentor}) {
+export function CodeEditor({ isMentor }) {
     const editorRef = useRef()
     const [block, setBlock] = useState(null)
     const [value, setValue] = useState('')
@@ -67,27 +68,39 @@ export function CodeEditor({isMentor}) {
 
     }
 
+    async function runCode(){
+
+    }
+
     console.log('isMENTORRR:', isMentor);
     if (!block) return <h2>loading...</h2>
     return (
-        <div className="code-editor">
-            <div className="editor-header flex align-center">
+        <div className="code-editor flex column">
+            <div className="editor-header flex align-center justify-around">
                 {isMentor ? <span>Hello Tom! , Have a look at Josh's code</span> : <span>Hello Josh! try to solve "{block.title}" Code block!</span>}
-                <button onClick={() => navigate('/')}>Back</button>
+                <div className="actions">
+                    <button onClick={() => navigate('/')}>Back</button>
+                    <button onClick={runCode}>Run code</button>
+                </div>
             </div>
-            <Editor
-                height="70vh"
-                width="60%"
-                theme="vs-dark"
-                defaultLanguage="javascript"
-                defaultValue={block.code}
-                value={value}
-                onMount={onMount}
-                onChange={handleChange}
-                options={{
-                    readOnly: isMentor
-                }}
-            />
+            <div className="editor-output flex">
+                <div className="editor">
+                    <Editor
+                        // height="70vh"
+                        // width="60%"
+                        theme="vs-dark"
+                        defaultLanguage="javascript"
+                        defaultValue={block.code}
+                        value={value}
+                        onMount={onMount}
+                        onChange={handleChange}
+                        options={{
+                            readOnly: isMentor
+                        }}
+                    />
+                </div>
+                <Output editorRef={editorRef} />
+            </div>
         </div>
     )
 }

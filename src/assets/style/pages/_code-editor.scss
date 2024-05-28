@@ -7,7 +7,8 @@
         margin-block-end: em(10px);
         margin-inline-start: em(10px);
 
-        button{
+
+        button {
             margin-inline: em(10px);
             padding: 4px;
             border: 2px solid $btn-clr;
@@ -15,12 +16,49 @@
             color: $main-font-clr;
             background-color: transparent;
             transition: .3s;
-
-            &:hover{
+            
+            &:hover {
                 background-color: $main-font-clr;
                 color: $main-bg-clr;
+                
+            }
+        }
+        
+        @include for-small-layout {
+            flex-direction: column-reverse;
+            gap: 5px;
+            margin-inline: 0;
+            span{
+                font-size: em(12px);
+            }
+            
+            button{
+                font-size: em(12px);
+                padding: 2px;
 
             }
         }
     }
+
+    .editor-output {
+        gap: em(20px);
+
+        .editor {
+            height: 70vh;
+            width: 60%;
+        }
+
+        @include for-narrow-layout {
+            display: grid;
+
+            .editor {
+                height: 40vh;
+                width: 80%;
+            }
+
+        }
+    }
+
+
+
 }

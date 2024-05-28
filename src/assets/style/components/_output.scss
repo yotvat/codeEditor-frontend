@@ -1,0 +1,45 @@
+.output-section {
+
+    .run-btn {
+        margin-inline: em(10px);
+        padding: 4px;
+        border: 2px solid $btn-clr;
+        border-radius: $el-br;
+        color: $main-font-clr;
+        background-color: transparent;
+        transition: .3s;
+
+        &:hover {
+            background-color: $main-font-clr;
+            color: $main-bg-clr;
+
+        }
+    }
+
+    .output-editor {
+        height: 70vh;
+        width: 30vw;
+        padding: em(2px);
+        border: 1px solid $main-font-clr;
+        border-radius: $el-br;
+        background-color: $editor-dark-clr;
+    }
+
+    .output-editor .light {
+        background-color: $editor-light-clr;
+    }
+
+    @include for-narrow-layout {
+        .output-editor {
+            height: 40vh;
+            width: 80%;
+        }
+
+        .output-editor .light {
+            height: 40vh;
+            width: 80%;
+        }
+    }
+
+
+}
