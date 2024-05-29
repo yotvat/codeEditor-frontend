@@ -7,7 +7,6 @@
         margin-block-end: em(10px);
         margin-inline-start: em(10px);
 
-
         button {
             margin-inline: em(10px);
             padding: 4px;
@@ -37,6 +36,8 @@
             button {
                 font-size: em(12px);
                 padding: 2px;
+                margin-inline: em(5px);
+                margin-block-start: em(2px);
 
             }
         }
@@ -60,7 +61,4 @@
 
         }
     }
-
-
-
 }

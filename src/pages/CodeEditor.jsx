@@ -44,7 +44,7 @@ export function CodeEditor() {
             setValue(blockFromParams.code)
             socketService.emit(SOCKET_EMIT_SET_BLOCK, blockFromParams)
         } catch (err) {
-            console.log(err);
+            console.log('error loading block',err);
         }
     }
 
@@ -63,7 +63,7 @@ export function CodeEditor() {
             socketService.emit(SOCKET_EMIT_UPDATE_BLOCK, savedBlock)
             setBlock(savedBlock)
         } catch (err) {
-            console.log(err);
+            console.log('error saving block',err);
         }
     }
 
@@ -75,8 +75,21 @@ export function CodeEditor() {
             const { run: result } = await apiService.executeCode(editorCode)
             setOutput(result.output)
         } catch (err) {
-            console.log(err)
+            console.log('error running code',err)
         }
+    }
+
+    async function resetBlock(){
+        const blockToSave = { ...block, code: block.initialCode }
+        try {
+            const savedBlock = await blockService.save(blockToSave)
+            socketService.emit(SOCKET_EMIT_UPDATE_BLOCK, savedBlock)
+            setBlock(savedBlock)
+            setValue(savedBlock.code)
+        } catch (err) {
+            console.log('erroe reseting code',err)
+        }
+
     }
 
     if (!block) return <div className="loader"></div>
@@ -87,6 +100,7 @@ export function CodeEditor() {
                 <div className="actions">
                     <button onClick={() => navigate('/')}>Back</button>
                     <button onClick={runCode}>Run code</button>
+                    <button onClick={resetBlock} >Reset &#8634;</button>
                 </div>
             </div>
             <div className="editor-output flex">
