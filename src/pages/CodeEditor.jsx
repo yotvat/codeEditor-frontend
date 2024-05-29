@@ -19,7 +19,6 @@ export function CodeEditor() {
         if (blockId) loadBlock(blockId)
 
         socketService.on(SOCKET_EVENT_IS_MENTOR, ({ isMentor }) => {
-            console.log(isMentor)
             setIsMentor(isMentor)
         })
 
@@ -32,7 +31,6 @@ export function CodeEditor() {
         });
 
         return () => {
-
             socketService.emit(SOCKET_EMIT_LEAVE_BLOCK, blockId)
             socketService.off(SOCKET_EVENT_IS_MENTOR)
             socketService.off(SOCKET_EVENT_BLOCK_UPDATED)
@@ -67,7 +65,6 @@ export function CodeEditor() {
         } catch (err) {
             console.log(err);
         }
-
     }
 
     async function runCode() {
@@ -82,7 +79,6 @@ export function CodeEditor() {
         }
     }
 
-    console.log('isMENTORRR:', isMentor);
     if (!block) return <div className="loader"></div>
     return (
         <div className="code-editor flex column">
@@ -96,8 +92,6 @@ export function CodeEditor() {
             <div className="editor-output flex">
                 <div className="editor">
                     <Editor
-                        // height="70vh"
-                        // width="60%"
                         theme="vs-dark"
                         defaultLanguage="javascript"
                         defaultValue={block.code}

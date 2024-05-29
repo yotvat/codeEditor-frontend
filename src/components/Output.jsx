@@ -6,7 +6,7 @@ export function Output({ output, solution }) {
             <div className="output-editor">
                 <span>
                     {
-                        output ? output : "Click run to see result"
+                        output ? output : "Click 'Run Code' to see result"
                     }
                     {winner && < pre >
                         THAT'S CORRECT!!!!! 🤩 🤩
