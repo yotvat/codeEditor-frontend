@@ -23,8 +23,9 @@
         border: 1px solid $main-font-clr;
         border-radius: $el-br;
         background-color: $editor-dark-clr;
-
+        padding: em(8px);
         span{
+            padding: em(5px);
             font-size: em(12px);
         }
     }

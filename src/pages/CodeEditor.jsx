@@ -97,7 +97,7 @@ export function CodeEditor() {
     return (
         <div className="code-editor flex column">
             <div className="editor-header flex align-center justify-around">
-                {isMentor ? <span>Hello Tom! , Have a look at Josh's code</span> : <span>Hello Josh! try to solve "{block.title}" Code block!</span>}
+                {isMentor ? <span>Hello Tom!  Have a look at Josh's code</span> : <span>Hello Josh! try to solve "{block.title}" Code block!</span>}
                 <div className="actions">
                     <button onClick={() => navigate('/')}>Back</button>
                     <button onClick={runCode}>Run code</button>
