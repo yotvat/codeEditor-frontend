@@ -29,17 +29,8 @@
         }
     }
 
-    .light {
-        background-color: $editor-light-clr;
-    }
-
     @include for-narrow-layout {
         .output-editor {
-            height: 40vh;
-            width: 80%;
-        }
-
-        .output-editor .light {
             height: 40vh;
             width: 80%;
         }

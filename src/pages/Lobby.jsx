@@ -5,7 +5,6 @@ import { blockService } from "../services/block.service";
 export function Lobby() {
     const [blocks, setBlocks] = useState([])
 
-
     useEffect(() => {
         if (!blocks || !blocks.length) loadBlocks()
     }, [])
@@ -27,8 +26,8 @@ export function Lobby() {
                 <h1>Choose code block</h1>
             </div>
             <BlockList
-            blocks={blocks}
-             />
+                blocks={blocks}
+            />
         </section>
     )
 }

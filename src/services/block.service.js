@@ -22,10 +22,8 @@ function remove(blockId) {
 
 function save(block) {
   if (block._id) {
-    // console.log('updating');
     return httpService.put(`block/${block._id}`, block)
   } else {
-    // console.log('adding');
     return httpService.post('block', block)
   }
 }

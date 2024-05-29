@@ -7,11 +7,11 @@ import { Output } from "../components/Output"
 import { apiService } from "../services/res-api.service"
 
 export function CodeEditor() {
-    const editorRef = useRef()
     const [block, setBlock] = useState(null)
     const [value, setValue] = useState('')
     const [output, setOutput] = useState(null)
     const [isMentor, setIsMentor] = useState(false)
+    const editorRef = useRef()
     const { blockId } = useParams()
     const navigate = useNavigate()
 
@@ -31,6 +31,7 @@ export function CodeEditor() {
         });
 
         return () => {
+            //Leave room and clean listenres
             socketService.emit(SOCKET_EMIT_LEAVE_BLOCK, blockId)
             socketService.off(SOCKET_EVENT_IS_MENTOR)
             socketService.off(SOCKET_EVENT_BLOCK_UPDATED)
@@ -44,7 +45,7 @@ export function CodeEditor() {
             setValue(blockFromParams.code)
             socketService.emit(SOCKET_EMIT_SET_BLOCK, blockFromParams)
         } catch (err) {
-            console.log('error loading block',err);
+            console.log('error loading block', err);
         }
     }
 
@@ -63,7 +64,7 @@ export function CodeEditor() {
             socketService.emit(SOCKET_EMIT_UPDATE_BLOCK, savedBlock)
             setBlock(savedBlock)
         } catch (err) {
-            console.log('error saving block',err);
+            console.log('error saving block', err);
         }
     }
 
@@ -75,11 +76,11 @@ export function CodeEditor() {
             const { run: result } = await apiService.executeCode(editorCode)
             setOutput(result.output)
         } catch (err) {
-            console.log('error running code',err)
+            console.log('error running code', err)
         }
     }
 
-    async function resetBlock(){
+    async function resetBlock() {
         const blockToSave = { ...block, code: block.initialCode }
         try {
             const savedBlock = await blockService.save(blockToSave)
@@ -87,7 +88,7 @@ export function CodeEditor() {
             setBlock(savedBlock)
             setValue(savedBlock.code)
         } catch (err) {
-            console.log('erroe reseting code',err)
+            console.log('error reseting code', err)
         }
 
     }

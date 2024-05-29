@@ -7,7 +7,6 @@ export const SOCKET_EMIT_LEAVE_BLOCK = 'leave-block'
 
 export const SOCKET_EVENT_IS_MENTOR = 'is-mentor'
 
-
 const baseUrl = process.env.NODE_ENV === 'production' ? '' : '//localhost:3030'
 export const socketService = createSocketService()
 

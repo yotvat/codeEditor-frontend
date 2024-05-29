@@ -38,7 +38,7 @@ function save(block) {
     return storageService.post(BLOCK_KEY, block)
   }
 }
-
+//initial demo data
 function _createBlocks() {
   let blocks = utilService.loadFromStorage(BLOCK_KEY)
   if (!blocks || !blocks.length) {
